@@ -3,4 +3,9 @@ from django.http import HttpResponse
 
 
 def home(request):
-	return render(request,'accounts/login.html')
+	numbers = [1,2,3,4,5,6]
+	context = {
+		'numbers':numbers,
+		'name'	 : 'suvro'
+	}
+	return render(request,'accounts/home.html',context)

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+	<title>Home</title>
+{% endblock %}
+
+{% block content %}
+	
+	<div class="jumbotron">
+		<h1>Welcome {{ name }}</h1>
+	</div>
+
+	<ul>
+		{% for number in numbers %}
+		<li>{{ number }}</li>
+		{% endfor %}
+	</ul>
+	
+	<div class="container">
+		<h1>its a login page</h1>
+		<button type="submit" class="btn btn-primary">Login</button>
+	</div>
+
+{% endblock %}
+
+	
+
+
+
