@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 
 {% block title %}
-	<title>login</title>
+	<title>Register</title>
 {% endblock %}
 
 {% block content %}
 
 
 	<h1>Welcome</h1>
-	<p>you can login here</p>
+	<p>you can register here</p>
 
 	<form method = "POST">
 		{% csrf_token %}
 		  {{ form.as_p }}
-		<button type="submit">LOGIN</button>
+		<button type="submit">Register</button>
 	</form>
 
 
