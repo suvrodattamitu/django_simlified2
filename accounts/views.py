@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
-
+from .forms import RegistrationForm
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserChangeForm
 
 
 def home(request):
@@ -15,13 +16,36 @@ def home(request):
 
 def register(request):
 	if request.method == 'GET':
-		form = UserCreationForm()
+		form = RegistrationForm()
 		context = {
 			'form' : form
 		}
 		return render(request,'accounts/register.html',context)
 	else:
-		form = UserCreationForm(request.POST)
+		form = RegistrationForm(request.POST)
 		if form.is_valid():
 			form.save()
 			return redirect('/account')
+
+def profile(request):
+	context = {
+		'user':request.user
+	}
+	return render(request,'accounts/profile.html',context)
+
+def edit_profile(request):
+	if request.method == 'POST':
+		form = UserChangeForm(request.POST,instance=request.user)
+		if form.is_valid():
+			form.save()
+			return redirect('view_profile')
+
+	else:
+		form = UserChangeForm(instance=request.user)
+		context = {
+			'form' : form
+		}
+		return render(request,'accounts/edit_profile.html',context)
+
+
+
